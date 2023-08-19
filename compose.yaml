@@ -5,5 +5,17 @@ services:
       - 'POSTGRES_DB=mydatabase'
       - 'POSTGRES_PASSWORD=secret'
       - 'POSTGRES_USER=myuser'
+    volumes:
+      - postgres_dev:/var/lib/postgresql/data
+  app:
+    build: .
+    environment:
+      - db_url=jdbc:postgresql://postgres/mydatabase
+      - db_user=myuser
+      - db_password=secret
+      - db_driver=org.postgresql.Driver
+      - hibernate_dialect=org.hibernate.dialect.PostgreSQLDialect
     ports:
-      - '5432'
+      - 8080:8080
+volumes:
+  postgres_dev:
