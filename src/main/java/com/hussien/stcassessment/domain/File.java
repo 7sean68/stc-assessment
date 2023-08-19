@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,8 +20,7 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Lob
-    Byte[] binary;
+    byte[] content;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "item_id", referencedColumnName = "id")

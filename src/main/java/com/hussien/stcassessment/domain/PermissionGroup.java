@@ -42,6 +42,7 @@ public class PermissionGroup {
     public void addPermission(@NonNull Permission permission) {
         assurePermissionsExist();
         permissions.add(permission);
+        permission.setGroup(this);
     }
 
     public void removePermission(@NonNull Permission permission) {
