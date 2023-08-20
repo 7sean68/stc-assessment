@@ -1,0 +1,9 @@
+type ItemResponse {
+    id: ID,
+    name: String,
+    type: String
+}
+
+type Query {
+    getFile(id: Int!, email: String!): ItemResponse!
+}
