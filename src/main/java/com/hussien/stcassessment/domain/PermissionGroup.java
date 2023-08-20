@@ -22,7 +22,7 @@ import lombok.ToString;
 public class PermissionGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     // wanted to name it "name". But, I'm following requirements
     String groupName;
@@ -31,13 +31,13 @@ public class PermissionGroup {
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    Set<Permission> permissions = new HashSet<>();
+    private Set<Permission> permissions = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "permissionGroup", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    Set<Item> items = new HashSet<>();
+    private Set<Item> items = new HashSet<>();
 
     public void addPermission(@NonNull Permission permission) {
         assurePermissionsExist();
@@ -59,6 +59,7 @@ public class PermissionGroup {
     public void addItem(@NonNull Item item) {
         assureItemsExist();
         items.add(item);
+        item.setPermissionGroup(this);
     }
 
     public void removeItem(@NonNull Item item) {

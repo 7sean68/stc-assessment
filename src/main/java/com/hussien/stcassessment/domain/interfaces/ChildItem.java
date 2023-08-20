@@ -2,7 +2,7 @@ package com.hussien.stcassessment.domain.interfaces;
 
 import jakarta.persistence.PreRemove;
 
-public interface ChildItem {
+public interface ChildItem extends WithPermissionGroup {
     ParentItem getParent();
 
     void setParent(ParentItem parent);

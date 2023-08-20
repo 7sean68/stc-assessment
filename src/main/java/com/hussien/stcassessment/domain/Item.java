@@ -2,7 +2,10 @@ package com.hussien.stcassessment.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hussien.stcassessment.domain.interfaces.ParentItem;
+import com.hussien.stcassessment.domain.interfaces.WithPermissionGroup;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
@@ -27,16 +30,16 @@ import lombok.ToString;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @Data
-public class Item {
+public class Item implements WithPermissionGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotNull
     private Long id;
 
     @NotNull
+    @Column(unique = true)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Item.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Item.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")
     @JsonIgnore
     @EqualsAndHashCode.Exclude
@@ -45,7 +48,7 @@ public class Item {
     @Setter(value = AccessLevel.NONE)
     ParentItem parent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "permission_group_id", referencedColumnName = "id")
     @JsonIgnore
     @EqualsAndHashCode.Exclude

@@ -26,5 +26,5 @@ public class SpaceItem extends Item implements ParentItem {
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    Set<ChildItem> children = new HashSet<>();
+    private Set<ChildItem> children = new HashSet<>();
 }

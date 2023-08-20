@@ -18,14 +18,14 @@ import lombok.ToString;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    byte[] content;
+    private byte[] content;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "item_id", referencedColumnName = "id")
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    FileItem item;
+    private FileItem item;
 }

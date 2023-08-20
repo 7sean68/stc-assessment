@@ -5,7 +5,7 @@ import java.util.Set;
 
 import lombok.NonNull;
 
-public interface ParentItem {
+public interface ParentItem extends WithPermissionGroup {
     Set<ChildItem> getChildren();
 
     void setChildren(@NonNull Set<ChildItem> children);
@@ -13,6 +13,7 @@ public interface ParentItem {
     public default void addChild(@NonNull ChildItem item) {
         assureChildrenExist();
         getChildren().add(item);
+        item.setParent(this);
     }
 
     public default void removeChild(@NonNull ChildItem item) {

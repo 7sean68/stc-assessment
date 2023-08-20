@@ -23,7 +23,12 @@ public class FileItem extends Item implements ChildItem {
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    File file;
+    private File file;
+
+    public void setFile(File file) {
+        this.file = file;
+        file.setItem(this);
+    }
 
     public ParentItem getParent() {
         return parent;

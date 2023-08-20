@@ -26,7 +26,7 @@ public class FolderItem extends Item implements ParentItem, ChildItem {
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    Set<ChildItem> children = new HashSet<>();
+    private Set<ChildItem> children = new HashSet<>();
 
     public ParentItem getParent() {
         return parent;
