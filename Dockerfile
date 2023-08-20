@@ -8,7 +8,7 @@ COPY pom.xml .
 RUN ./mvnw verify --fail-never
 
 COPY src src
-RUN ./mvnw package -DskipTests
+RUN ./mvnw package
 
 FROM openjdk:17-alpine as run
 WORKDIR /app
