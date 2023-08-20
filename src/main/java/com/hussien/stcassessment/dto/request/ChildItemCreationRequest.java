@@ -5,6 +5,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ChildItemRequest extends ItemRequest {
-    
+public class ChildItemCreationRequest extends ItemCreationRequest {
+    private Long parentId;
 }
